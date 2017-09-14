@@ -16,6 +16,8 @@ namespace VanillaPuddingAPI.Controllers
             using (var db = new Context()){
                 db.Clients.Add(new Client(){Name = "Bobula"});
                 db.SaveChanges();
+
+                //Dick
                 
                 var query = from b in db.Clients select b;
 
