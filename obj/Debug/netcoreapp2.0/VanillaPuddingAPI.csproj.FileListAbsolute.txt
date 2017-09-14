@@ -1,0 +1,10 @@
+/Users/benjamin/Documents/VanillaPuddingAPI/bin/Debug/netcoreapp2.0/VanillaPuddingAPI.deps.json
+/Users/benjamin/Documents/VanillaPuddingAPI/bin/Debug/netcoreapp2.0/VanillaPuddingAPI.runtimeconfig.json
+/Users/benjamin/Documents/VanillaPuddingAPI/bin/Debug/netcoreapp2.0/VanillaPuddingAPI.runtimeconfig.dev.json
+/Users/benjamin/Documents/VanillaPuddingAPI/bin/Debug/netcoreapp2.0/VanillaPuddingAPI.dll
+/Users/benjamin/Documents/VanillaPuddingAPI/bin/Debug/netcoreapp2.0/VanillaPuddingAPI.pdb
+/Users/benjamin/Documents/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.csproj.CoreCompileInputs.cache
+/Users/benjamin/Documents/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.AssemblyInfoInputs.cache
+/Users/benjamin/Documents/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.AssemblyInfo.cs
+/Users/benjamin/Documents/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.dll
+/Users/benjamin/Documents/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.pdb
