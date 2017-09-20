@@ -23,7 +23,17 @@ namespace VanillaPuddingAPI.Controllers
                 return PageNotFound(); 
             }
 
-            return Json(new {client = client});
+            return Json(client);
+        }
+
+        public ActionResult Index(){
+            List<Client> clients = new List<Client>();
+
+            using(var db = new Context()){
+                clients = db.Clients.ToList();
+            }
+
+            return Json(clients);
         }
     }
 }
