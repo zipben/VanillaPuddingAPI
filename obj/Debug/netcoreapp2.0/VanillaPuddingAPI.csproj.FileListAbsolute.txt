@@ -8,3 +8,13 @@
 /Users/benjamin/Documents/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.AssemblyInfo.cs
 /Users/benjamin/Documents/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.dll
 /Users/benjamin/Documents/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.pdb
+/Users/jeff/Dev/VanillaPuddingAPI/bin/Debug/netcoreapp2.0/VanillaPuddingAPI.deps.json
+/Users/jeff/Dev/VanillaPuddingAPI/bin/Debug/netcoreapp2.0/VanillaPuddingAPI.runtimeconfig.json
+/Users/jeff/Dev/VanillaPuddingAPI/bin/Debug/netcoreapp2.0/VanillaPuddingAPI.runtimeconfig.dev.json
+/Users/jeff/Dev/VanillaPuddingAPI/bin/Debug/netcoreapp2.0/VanillaPuddingAPI.dll
+/Users/jeff/Dev/VanillaPuddingAPI/bin/Debug/netcoreapp2.0/VanillaPuddingAPI.pdb
+/Users/jeff/Dev/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.csproj.CoreCompileInputs.cache
+/Users/jeff/Dev/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.AssemblyInfoInputs.cache
+/Users/jeff/Dev/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.AssemblyInfo.cs
+/Users/jeff/Dev/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.dll
+/Users/jeff/Dev/VanillaPuddingAPI/obj/Debug/netcoreapp2.0/VanillaPuddingAPI.pdb

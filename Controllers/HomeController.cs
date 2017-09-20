@@ -14,7 +14,7 @@ namespace VanillaPuddingAPI.Controllers
         public IActionResult Index()
         {
             using (var db = new Context()){
-                db.Clients.Add(new Client(){Name = "Bobula"});
+                db.Clients.Add(new Client(){Name = "Jaundice", EmailAddress = "Jaundice@homies.com", PhoneNumber = "734-780-2471", Notes = "I'm Jaundice!"});
                 db.SaveChanges();
 
                 //Dick
