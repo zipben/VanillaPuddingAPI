@@ -12,9 +12,10 @@ using VanillaPuddingAPI.Enums;
 namespace VanillaPuddingAPI.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20170920001316_Orders")]
+    partial class Orders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,26 +70,12 @@ namespace VanillaPuddingAPI.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("VanillaPuddingAPI.DAL.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("OrderId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("VanillaPuddingAPI.DAL.Unit", b =>
                 {
                     b.Property<int>("UnitId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("OrderId");
-
                     b.HasKey("UnitId");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("Units");
                 });
@@ -118,13 +105,6 @@ namespace VanillaPuddingAPI.Migrations
                     b.HasOne("VanillaPuddingAPI.DAL.Client")
                         .WithMany("Contacts")
                         .HasForeignKey("ClientId");
-                });
-
-            modelBuilder.Entity("VanillaPuddingAPI.DAL.Unit", b =>
-                {
-                    b.HasOne("VanillaPuddingAPI.DAL.Order")
-                        .WithMany("Units")
-                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("VanillaPuddingAPI.DAL.UnitSetting", b =>
