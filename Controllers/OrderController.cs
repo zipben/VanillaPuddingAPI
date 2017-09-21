@@ -9,33 +9,33 @@ using VanillaPuddingAPI.Models;
 
 namespace VanillaPuddingAPI.Controllers
 {
-    public class ClientController : BaseController
+    public class OrderController : BaseController
     {
-        [HttpGet("/clients/{clientId}")]
-        public ActionResult Client(int clientId){
+        [HttpGet("/orders/{orderId}")]
+        public ActionResult Order(int orderId){
 
-            Client client = new Client();
+            Order order = new Order();
 
             using(var db = new Context()){
-                client = db.Clients.Where(c => c.ClientId == clientId).FirstOrDefault();
+                order = db.Orders.Where(o => o.OrderId == orderId).FirstOrDefault();
             }
 
-            if(client == null){
+            if(order == null){
                 return PageNotFound(); 
             }
 
-            return Json(client);
+            return Json(order);
         }
 
-        [HttpGet("/clients")]
+        [HttpGet("/orders")]
         public ActionResult Index(){
-            List<Client> clients = new List<Client>();
+            List<Order> orders = new List<Order>();
 
             using(var db = new Context()){
-                clients = db.Clients.ToList();
+                orders = db.Orders.ToList();
             }
 
-            return Json(clients);
+            return Json(orders);
         }
     }
 }
