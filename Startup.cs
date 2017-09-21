@@ -22,6 +22,7 @@ namespace VanillaPuddingAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddRouting();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,8 +42,12 @@ namespace VanillaPuddingAPI
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
+                    name: "Clients",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name:"testing",
+                    template:""
+                );
             });
         }
     }
