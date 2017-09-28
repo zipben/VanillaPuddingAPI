@@ -31,6 +31,8 @@ namespace VanillaPuddingAPI.DAL
     public class Order
     {
         public int OrderId { get; set; }
+        public string OrderName { get; set; }
+        public int OrderStatus { get; set; }
         public List<Unit> Units { get; set; }
     }
     public class Unit
