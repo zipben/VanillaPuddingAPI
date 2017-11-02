@@ -13,6 +13,13 @@ namespace VanillaPuddingAPI.DAL
         public string PhoneNumber { get; set; }
         public List<Contact> Contacts { get; set; } 
 
+        public Client(){
+            this.EmailAddress = "";
+            this.Name =" ";   
+            this.Notes = "";
+            this.PhoneNumber = "";
+            this.Contacts = new List<Contact>();
+        }
     }
 
     public class Contact

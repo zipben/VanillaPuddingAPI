@@ -29,12 +29,12 @@ namespace VanillaPuddingAPI.Controllers
         }
 
         [HttpPost("/clients/AddEdit")]
-        public ActionResult AddEditClient(Client client){
+        public ActionResult AddEditClient([FromBody]Client client){
             
             if(client.ClientId == 0){
                 Logger.LogInformation("Adding new client");
             }
-            else{
+            else{   
                 Logger.LogInformation("Updating Client: " + client.ClientId);
             }
             
