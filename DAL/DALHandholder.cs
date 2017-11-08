@@ -26,8 +26,11 @@ public class DALHandholder{
     public Client AddEditClient(ShitBucket shitBucket, Client client){
         using(var db = new Context()){
             
-            db.Clients.Add(client);
-
+            //Client targetClient = db.Clients.Contains(c => c.ClientId == client.ClientId);
+            if(db.Clients.Where(c => c.ClientId == client.ClientId).Count() == 0)
+                db.Clients.Add(client);
+            else
+                db.Clients.Update(client);
             try{
                 db.SaveChanges();
             }
