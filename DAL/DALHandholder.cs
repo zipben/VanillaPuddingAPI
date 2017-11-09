@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Microsoft.Extensions.Logging;
 using VanillaPuddingAPI.DAL;
 
@@ -17,9 +18,13 @@ public class DALHandholder{
             }
         }
     }
-    public List<Client> GetClients(){
+    public List<Client> GetClients(string orderBy = ""){
         using(var db = new Context()){
-           return db.Clients.ToList();
+            if(string.IsNullOrWhiteSpace(orderBy))
+                return db.Clients.ToList();
+            else{
+                return db.Clients.OrderBy(c => c.GetType().GetProperty(orderBy)).ToList();    
+            }
         }
     }
 
@@ -39,6 +44,48 @@ public class DALHandholder{
             }
 
             return client;
+        }
+    }
+
+    public Contact GetContact(int contactId){
+         using(var db = new Context()){
+            List<Contact> contacts = db.Contacts.Where(c => c.ContactId == contactId).ToList();
+
+            if(contacts.Count > 0){
+                return contacts.FirstOrDefault();
+            }
+            else{
+                return null;
+            }
+        }
+    }
+
+    public List<Contact> GetContacts(string orderBy = ""){
+        using(var db = new Context()){
+            if(string.IsNullOrWhiteSpace(orderBy))
+                return db.Contacts.ToList();
+            else{
+                return db.Contacts.OrderBy(c => c.GetType().GetProperty(orderBy)).ToList();    
+            }
+        } 
+    }
+
+    public Contact AddEditContact(ShitBucket shitBucket, Contact contact){
+        using(var db = new Context()){
+            
+            //Client targetClient = db.Clients.Contains(c => c.ClientId == client.ClientId);
+            if(db.Contacts.Where(c => c.ContactId == contact.ContactId).Count() == 0)
+                db.Contacts.Add(contact);
+            else
+                db.Contacts.Update(contact);
+            try{
+                db.SaveChanges();
+            }
+            catch(Exception e){
+                shitBucket.AddError(e.Message);
+            }
+
+            return contact;
         }
     }
 }

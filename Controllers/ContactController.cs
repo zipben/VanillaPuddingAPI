@@ -10,26 +10,26 @@ using VanillaPuddingAPI.Models;
 
 namespace VanillaPuddingAPI.Controllers
 {
-    public class ClientController : BaseController
+    public class ContactController : BaseController
     {
         ILogger Logger;
 
-        public ClientController(ILogger<ClientController> logger){
+        public ContactController(ILogger<ClientController> logger){
             Logger = logger;
         }
 
-        [HttpGet("/clients/{clientId}")]
-        public ActionResult Client(int clientId){
-            return Json(Handholder.GetClient(clientId));
+        [HttpGet("/contacts/{contactId}")]
+        public ActionResult Contact(int contactId){
+            return Json(Handholder.GetClient(contactId));
         }
 
-        [HttpGet("/clients/{orderBy}")]
-        public ActionResult Index(string orderBy = ""){
-            return Json(Handholder.GetClients(orderBy));
+        [HttpGet("/contacts")]
+        public ActionResult Index(){
+            return Json(Handholder.GetClients());
         }
 
-        [HttpPost("/clients/AddEdit")]
-        public ActionResult AddEditClient([FromBody]Client client){
+        [HttpPost("/contacts/AddEdit")]
+        public ActionResult AddEditContact([FromBody]Contact contact){
             
             if(client.ClientId == 0){
                 Logger.LogInformation("Adding new client");
