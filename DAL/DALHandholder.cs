@@ -19,7 +19,7 @@ public class DALHandholder{
     }
     public List<Client> GetClients(){
         using(var db = new Context()){
-           return db.Clients.ToList();
+           return db.Clients.OrderBy(c => c.ClientId).ToList();
         }
     }
 
@@ -39,6 +39,18 @@ public class DALHandholder{
             }
 
             return client;
+        }
+    }
+
+    public void DeleteClient(ShitBucket shitBucket, int clientId){
+        using(var db = new Context()){
+            db.Clients.Remove(db.Clients.Where(c => c.ClientId == clientId).FirstOrDefault());
+            try{
+                db.SaveChanges();
+            }
+            catch(Exception e){
+                shitBucket.AddError(e.Message);
+            }
         }
     }
 }
