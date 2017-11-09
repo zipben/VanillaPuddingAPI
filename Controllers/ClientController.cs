@@ -23,9 +23,9 @@ namespace VanillaPuddingAPI.Controllers
             return Json(Handholder.GetClient(clientId));
         }
 
-        [HttpGet("/clients/{orderBy}")]
-        public ActionResult Index(string orderBy = ""){
-            return Json(Handholder.GetClients(orderBy));
+        [HttpGet("/clients")]
+        public ActionResult Index(){
+            return Json(Handholder.GetClients());
         }
 
         [HttpPost("/clients/{clientId}/delete")]

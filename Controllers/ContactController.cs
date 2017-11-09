@@ -14,32 +14,32 @@ namespace VanillaPuddingAPI.Controllers
     {
         ILogger Logger;
 
-        public ContactController(ILogger<ClientController> logger){
+        public ContactController(ILogger<ContactController> logger){
             Logger = logger;
         }
 
         [HttpGet("/contacts/{contactId}")]
         public ActionResult Contact(int contactId){
-            return Json(Handholder.GetClient(contactId));
+            return Json(Handholder.GetContact(contactId));
         }
 
         [HttpGet("/contacts")]
         public ActionResult Index(){
-            return Json(Handholder.GetClients());
+            return Json(Handholder.GetContacts());
         }
 
         [HttpPost("/contacts/AddEdit")]
         public ActionResult AddEditContact([FromBody]Contact contact){
             
-            if(client.ClientId == 0){
-                Logger.LogInformation("Adding new client");
+            if(contact.ContactId == 0){
+                Logger.LogInformation("Adding new Contact");
             }
             else{   
-                Logger.LogInformation("Updating Client: " + client.ClientId);
+                Logger.LogInformation("Updating Contact: " + contact.ContactId);
             }
             
             ShitBucket sBucket = new ShitBucket();
-            Handholder.AddEditClient(sBucket, client);
+            Handholder.AddEditContact(sBucket, contact);
 
             if(!sBucket.IsValid){
                 Logger.LogError(sBucket.GetTopError());

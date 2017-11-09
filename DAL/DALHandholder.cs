@@ -48,6 +48,17 @@ public class DALHandholder{
         }
     }
 
+    public void DeleteClient(ShitBucket shitBucket, int clientId){
+        using(var db = new Context()){
+            db.Clients.Remove(db.Clients.Where(c => c.ClientId == clientId).FirstOrDefault());
+            try{
+                db.SaveChanges();
+            }
+            catch(Exception e){
+                shitBucket.AddError(e.Message);
+            }
+        }
+    }
 
     public Contact GetContact(int contactId){
          using(var db = new Context()){
@@ -71,17 +82,6 @@ public class DALHandholder{
             }
         } 
     }
-
-    public void DeleteClient(ShitBucket shitBucket, int clientId){
-        using(var db = new Context()){
-            db.Clients.Remove(db.Clients.Where(c => c.ClientId == clientId).FirstOrDefault());
-            try{
-                db.SaveChanges();
-            }
-            catch(Exception e){
-                shitBucket.AddError(e.Message);
-            }
-        }
       
       
     public Contact AddEditContact(ShitBucket shitBucket, Contact contact){
