@@ -20,11 +20,12 @@ public class DALHandholder{
     }
     public List<Client> GetClients(string orderBy = ""){
         using(var db = new Context()){
-            if(string.IsNullOrWhiteSpace(orderBy))
-                return db.Clients.ToList();
-            else{
-                return db.Clients.OrderBy(c => c.GetType().GetProperty(orderBy)).ToList();    
-            }
+
+          if(string.IsNullOrWhiteSpace(orderBy))
+              return db.Clients.ToList();
+          else{
+              return db.Clients.OrderBy(c => c.GetType().GetProperty(orderBy)).ToList();    
+          }
         }
     }
 
@@ -46,6 +47,7 @@ public class DALHandholder{
             return client;
         }
     }
+
 
     public Contact GetContact(int contactId){
          using(var db = new Context()){
@@ -70,6 +72,18 @@ public class DALHandholder{
         } 
     }
 
+    public void DeleteClient(ShitBucket shitBucket, int clientId){
+        using(var db = new Context()){
+            db.Clients.Remove(db.Clients.Where(c => c.ClientId == clientId).FirstOrDefault());
+            try{
+                db.SaveChanges();
+            }
+            catch(Exception e){
+                shitBucket.AddError(e.Message);
+            }
+        }
+      
+      
     public Contact AddEditContact(ShitBucket shitBucket, Contact contact){
         using(var db = new Context()){
             
@@ -78,14 +92,8 @@ public class DALHandholder{
                 db.Contacts.Add(contact);
             else
                 db.Contacts.Update(contact);
-            try{
-                db.SaveChanges();
-            }
-            catch(Exception e){
-                shitBucket.AddError(e.Message);
-            }
-
-            return contact;
+          
+          return contact;
         }
     }
 }

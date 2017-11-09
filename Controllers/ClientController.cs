@@ -28,6 +28,22 @@ namespace VanillaPuddingAPI.Controllers
             return Json(Handholder.GetClients(orderBy));
         }
 
+        [HttpPost("/clients/{clientId}/delete")]
+        public ActionResult DeleteClient(int clientId){
+            
+             
+            Logger.LogInformation("Delete Client: " + clientId);
+            
+            ShitBucket sBucket = new ShitBucket();
+            Handholder.DeleteClient(sBucket, clientId);
+
+            if(!sBucket.IsValid){
+                Logger.LogError(sBucket.GetTopError());
+            }
+            
+            return Json(new{success = true});
+        }
+
         [HttpPost("/clients/AddEdit")]
         public ActionResult AddEditClient([FromBody]Client client){
             
@@ -45,7 +61,7 @@ namespace VanillaPuddingAPI.Controllers
                 Logger.LogError(sBucket.GetTopError());
             }
             
-            return Json(new {success = sBucket.IsValid});
+            return Json(client);
         }
     }
 }
