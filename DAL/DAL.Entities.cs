@@ -4,6 +4,7 @@ using VanillaPuddingAPI.Enums;
 
 namespace VanillaPuddingAPI.DAL
 {
+    //[DALBuilder]
     public class Client
     {
         public int ClientId { get; set; }
@@ -21,7 +22,7 @@ namespace VanillaPuddingAPI.DAL
             this.Contacts = new List<Contact>();
         }
     }
-
+    //[DALBuilder]
     public class Contact
     {
         public int ContactId { get; set; }
@@ -35,6 +36,7 @@ namespace VanillaPuddingAPI.DAL
         public string Zip { get; set; }
 
     }
+    //[DALBuilder]
     public class Order
     {
         public int OrderId { get; set; }
