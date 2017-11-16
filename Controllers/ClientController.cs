@@ -12,56 +12,58 @@ namespace VanillaPuddingAPI.Controllers
 {
     public class ClientController : BaseController
     {
-        ILogger Logger;
+        #region custom
+        //this is a test
+        //to make sure it doesnt get overwritten
+        #endregion
 
-        public ClientController(ILogger<ClientController> logger){
-            Logger = logger;
-        }
+		#region generated
+		ILogger Logger;
+		public ClientController(ILogger<ClientController> logger){
+			Logger = logger;
+		}
 
-        [HttpGet("/clients/{clientId}")]
-        public ActionResult Client(int clientId){
-            return Json(Handholder.GetClient(clientId));
-        }
+		[HttpGet("/clients/{clientId}")]
+		public ActionResult Client(int clientId){
+			return Json(Handholder.GetClient(clientId));
+		}
 
-        [HttpGet("/clients")]
-        public ActionResult Index(){
-            return Json(Handholder.GetClients());
-        }
+		[HttpGet("/clients")]
+		public ActionResult Index(){
+			return Json(Handholder.GetClients());
+		}
 
-        [HttpPost("/clients/{clientId}/delete")]
-        public ActionResult DeleteClient(int clientId){
-            
-             
-            Logger.LogInformation("Delete Client: " + clientId);
-            
-            ShitBucket sBucket = new ShitBucket();
-            Handholder.DeleteClient(sBucket, clientId);
+		[HttpPost("/clients/{clientId}/delete")]
+		public ActionResult DeleteClient(int clientId){
 
-            if(!sBucket.IsValid){
-                Logger.LogError(sBucket.GetTopError());
-            }
-            
-            return Json(new{success = true});
-        }
+			Logger.LogInformation("Delete Client: " + clientId);
+			ShitBucket sBucket = new ShitBucket();
+			Handholder.DeleteClient(sBucket, clientId);
+			if(!sBucket.IsValid){
+				Logger.LogError(sBucket.GetTopError());
+			}
 
-        [HttpPost("/clients/AddEdit")]
-        public ActionResult AddEditClient([FromBody]Client client){
-            
-            if(client.ClientId == 0){
-                Logger.LogInformation("Adding new client");
-            }
-            else{   
-                Logger.LogInformation("Updating Client: " + client.ClientId);
-            }
-            
-            ShitBucket sBucket = new ShitBucket();
-            Handholder.AddEditClient(sBucket, client);
+			return Json(new{success = true});
+		}
 
-            if(!sBucket.IsValid){
-                Logger.LogError(sBucket.GetTopError());
-            }
-            
-            return Json(client);
-        }
-    }
+		[HttpPost("/clients/AddEdit")]
+		public ActionResult AddEditClient([FromBody]Client client){
+			if(client.ClientId == 0){
+				Logger.LogInformation("Adding new client");
+			}
+			else{
+				Logger.LogInformation("Updating Client: " + client.ClientId);
+			}
+
+			ShitBucket sBucket = new ShitBucket();
+			Handholder.AddEditClient(sBucket, client);
+			if(!sBucket.IsValid){
+				Logger.LogError(sBucket.GetTopError());
+			}
+			return Json(client);
+		}
+
+		#endregion
+	}
+
 }

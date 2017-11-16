@@ -4,38 +4,62 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using VanillaPuddingAPI.DAL;
 using VanillaPuddingAPI.Models;
-
 namespace VanillaPuddingAPI.Controllers
 {
-    public class OrderController : BaseController
-    {
-        [HttpGet("/orders/{orderId}")]
-        public ActionResult Order(int orderId){
+	public class OrderController : BaseController
+	{
+		#region custom
+		#endregion
+		#region generated
+		ILogger Logger;
+		public OrderController(ILogger<OrderController> logger){
+			Logger = logger;
+		}
 
-            Order order = new Order();
+		[HttpGet("/orders/{orderId}")]
+		public ActionResult Order(int orderId){
+			return Json(Handholder.GetOrder(orderId));
+		}
 
-            using(var db = new Context()){
-                order = db.Orders.Where(o => o.OrderId == orderId).FirstOrDefault();
-            }
+		[HttpGet("/orders")]
+		public ActionResult Index(){
+			return Json(Handholder.GetOrders());
+		}
 
-            if(order == null){
-                return PageNotFound(); 
-            }
+		[HttpPost("/orders/{orderId}/delete")]
+		public ActionResult DeleteOrder(int orderId){
 
-            return Json(order);
-        }
+			Logger.LogInformation("Delete Order: " + orderId);
+			ShitBucket sBucket = new ShitBucket();
+			Handholder.DeleteOrder(sBucket, orderId);
+			if(!sBucket.IsValid){
+				Logger.LogError(sBucket.GetTopError());
+			}
 
-        [HttpGet("/orders")]
-        public ActionResult Index(){
-            List<Order> orders = new List<Order>();
+			return Json(new{success = true});
+		}
 
-            using(var db = new Context()){
-                orders = db.Orders.ToList();
-            }
+		[HttpPost("/orders/AddEdit")]
+		public ActionResult AddEditOrder([FromBody]Order order){
+			if(order.OrderId == 0){
+				Logger.LogInformation("Adding new order");
+			}
+			else{
+				Logger.LogInformation("Updating Order: " + order.OrderId);
+			}
 
-            return Json(orders);
-        }
-    }
+			ShitBucket sBucket = new ShitBucket();
+			Handholder.AddEditOrder(sBucket, order);
+			if(!sBucket.IsValid){
+				Logger.LogError(sBucket.GetTopError());
+			}
+			return Json(order);
+		}
+
+		#endregion
+	}
+
 }
