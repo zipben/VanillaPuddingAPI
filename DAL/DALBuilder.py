@@ -32,9 +32,6 @@ file.close
 
 file = open("DALHandholder.cs", "w")
 
-# for idx, val in enumerate(lines):
-#     if idx < len(lines) - 1:
-#         file.write(val)
 
 #print headers, purge the rest
 referencesPrinted = False
